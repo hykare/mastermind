@@ -1,5 +1,7 @@
 require 'board'
 class Game
+attr_reader :board, :rounds_left
+
   def initialize
     @board = Board.new
     @rounds_left = 12
@@ -7,8 +9,16 @@ class Game
   end
 
   def play
-    puts 'playing game'
+    while rounds_left > 0
+      puts "round #{13 - rounds_left}"
+      board.draw
+      puts "\nguess the secret code:"
+      get_guess
+      @rounds_left -= 1
+    end
   end
 
-
+  def get_guess
+    gets.chomp.split
+  end
 end
