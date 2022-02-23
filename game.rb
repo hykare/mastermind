@@ -1,25 +1,27 @@
 require 'board'
 class Game
   INSTRUCTIONS = 'guess the secret code:'
-  attr_reader :board, :rounds_left
+  TOTAL_ROUNDS = 12
+  attr_reader :board, :round
 
   def initialize
     @board = Board.new
-    @rounds_left = 12
+    @round = 0
     @code = Array.new(4).map { rand(1..6) }
   end
 
   def play
-    while rounds_left > 0
-      puts "round #{13 - rounds_left}"
+    while round < TOTAL_ROUNDS
+      puts "round #{round}"
       board.draw
       puts INSTRUCTIONS
-      get_guess
-      @rounds_left -= 1
+      guess = get_guess
+      board.update(guess, round)
+      @round += 1
     end
   end
 
   def get_guess
-    gets.chomp.split
+    gets.chomp.chars.map { |char| char.to_i }
   end
 end
