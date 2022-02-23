@@ -3,7 +3,7 @@ class Game
   def initialize
     @board = Board.new
     @rounds_left = 12
-    puts 'initialized game'
+    @code = Array.new(4).map { rand(1..6) }
   end
 
   def play
