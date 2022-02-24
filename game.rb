@@ -1,6 +1,8 @@
 require 'board'
 class Game
-  INSTRUCTIONS = 'guess the secret code:'
+  INSTRUCTIONS = 'guess the secret code:'.freeze
+  VICTORY_MSG = 'Congratulations! You broke the code!'.freeze
+  FAILURE_MSG = 'Aw, maybe next time'.freeze
   TOTAL_ROUNDS = 12
   attr_reader :board, :round
 
