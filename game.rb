@@ -13,6 +13,7 @@ class Game
   end
 
   def play
+    print "pssst! the secret code is ", @code, "\n\n"
     while round < TOTAL_ROUNDS
       puts "round #{round}"
       board.draw
