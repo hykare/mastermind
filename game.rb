@@ -13,9 +13,9 @@ class Game
   end
 
   def play
-    print "pssst! the secret code is ", @code, "\n\n"
+    print 'pssst! the secret code is ', @code, "\n\n"
     while round < TOTAL_ROUNDS
-      puts "round #{round}"
+      puts "round #{round + 1}"
       board.draw
       puts INSTRUCTIONS
       guess = get_guess

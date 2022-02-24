@@ -6,6 +6,6 @@ while game_on
   game = Game.new
   game.play
   game.final_screen
-  puts 'Would you like to play again?'
+  puts 'Would you like to play again? y/n'
   game_on = gets.chomp == 'y'
 end
