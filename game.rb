@@ -26,6 +26,12 @@ class Game
     end
   end
 
+  def final_screen
+    board.draw
+    puts FAILURE_MSG if @round == 12
+    puts VICTORY_MSG if @round < 12
+  end
+
   def get_guess
     gets.chomp.chars.map { |char| char.to_i }
   end
