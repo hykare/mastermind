@@ -19,6 +19,8 @@ class Game
       puts INSTRUCTIONS
       guess = get_guess
       board.update(guess, round)
+      break if guess == @code
+
       @round += 1
     end
   end
