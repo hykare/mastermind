@@ -18,7 +18,7 @@ class Board
   def update_keys(round, code)
     correct_keys = []
     guesses[round].each_with_index do |peg, i|
-      correct_keys << "o" if peg == code[i]
+      correct_keys << 'o' if peg == code[i]
     end
     keys[round] = correct_keys
   end
