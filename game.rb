@@ -19,7 +19,7 @@ class Game
       board.draw
       puts INSTRUCTIONS
       guess = get_guess
-      board.update(guess, round)
+      board.update(guess, round, @code)
       break if guess == @code
 
       @round += 1
