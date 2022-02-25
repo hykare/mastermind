@@ -16,7 +16,7 @@ class Game
     print 'pssst! the secret code is ', @code, "\n\n"
     while round < TOTAL_ROUNDS
       puts "round #{round + 1}"
-      board.draw
+      board.draw(round)
       puts INSTRUCTIONS
       guess = get_guess
       board.update(guess, round, @code)
@@ -27,7 +27,7 @@ class Game
   end
 
   def final_screen
-    board.draw
+    board.draw(round)
     puts FAILURE_MSG if @round == 12
     puts VICTORY_MSG if @round < 12
   end
