@@ -28,8 +28,8 @@ class Game
 
   def final_screen
     board.draw(round)
-    puts FAILURE_MSG if @round == 12
-    puts VICTORY_MSG if @round < 12
+    puts FAILURE_MSG if @round == TOTAL_ROUNDS
+    puts VICTORY_MSG if @round < TOTAL_ROUNDS
   end
 
   def get_guess
