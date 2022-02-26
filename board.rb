@@ -44,7 +44,7 @@ class Board
       code.delete_at(code.index(peg))
       value_correct_no += 1
     end
-    correct_no.times { keys[round] << 'o' }
-    (value_correct_no - correct_no).times { keys[round] << 'x' }
+    correct_no.times { keys[round] << '●' }
+    (value_correct_no - correct_no).times { keys[round] << '○' }
   end
 end
