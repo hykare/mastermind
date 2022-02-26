@@ -27,10 +27,24 @@ class Board
   end
 
   def update_keys(round, code)
-    correct_keys = []
-    guesses[round].each_with_index do |peg, i|
-      correct_keys << 'o' if peg == code[i]
+    code = code.clone # prevents deleting from original code array
+    guess = guesses[round] # for readability
+    correct_no = 0
+    value_correct_no = 0
+    # checks for exact matches in both value and position
+    guess.each_with_index do |peg, i|
+      next unless peg == code[i]
+
+      correct_no += 1
     end
-    keys[round] = correct_keys
+    # checks for matches in value regardless of position
+    guess.each do |peg|
+      next unless code.include? peg
+
+      code.delete_at(code.index(peg))
+      value_correct_no += 1
+    end
+    correct_no.times { keys[round] << 'o' }
+    (value_correct_no - correct_no).times { keys[round] << 'x' }
   end
 end
