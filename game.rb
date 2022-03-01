@@ -33,6 +33,15 @@ class Game
   end
 
   def get_guess
-    gets.chomp.chars.map { |char| char.to_i }
+    guess_valid = false
+    input = []
+    until guess_valid
+      input = gets.chomp.chars.map { |char| char.to_i }
+      length_valid = input.length == 4
+      content_valid = input.all? { |digit| digit.between?(1, 6) }
+      guess_valid = length_valid && content_valid
+      puts 'invalid input' if !guess_valid
+    end
+    input
   end
 end
