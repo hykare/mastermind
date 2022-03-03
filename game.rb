@@ -1,4 +1,5 @@
 require 'board'
+
 class Game
   TOTAL_ROUNDS = 12
   attr_reader :board, :round, :code
@@ -6,7 +7,7 @@ class Game
   def initialize
     @board = Board.new
     @round = 0
-    @code = Array.new(4).map { rand(1..6) }
+    @code = make_code
   end
 
   def play
@@ -52,6 +53,10 @@ class Game
 
   def failure_msg
     puts 'Aw, maybe next time'
+  end
+
+  def make_code
+    Array.new(4).map { rand(1..6) }
   end
 
 end
