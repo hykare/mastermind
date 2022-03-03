@@ -1,8 +1,5 @@
 require 'board'
 class Game
-  INSTRUCTIONS = 'guess the secret code:'.freeze
-  VICTORY_MSG = 'Congratulations! You broke the code!'.freeze
-  FAILURE_MSG = 'Aw, maybe next time'.freeze
   TOTAL_ROUNDS = 12
   attr_reader :board, :round, :code
 
@@ -17,7 +14,7 @@ class Game
     while round < TOTAL_ROUNDS
       puts "round #{round + 1}"
       board.draw(round)
-      puts INSTRUCTIONS
+      prompt_msg
       guess = get_guess
       board.update(guess, round, code)
       break if guess == code
@@ -28,8 +25,8 @@ class Game
 
   def final_screen
     board.draw(round)
-    puts FAILURE_MSG if round == TOTAL_ROUNDS
-    puts VICTORY_MSG if round < TOTAL_ROUNDS
+    failure_msg if round == TOTAL_ROUNDS
+    victory_msg if round < TOTAL_ROUNDS
   end
 
   def get_guess
@@ -44,4 +41,17 @@ class Game
     end
     input
   end
+
+  def prompt_msg
+    puts 'guess the secret code:'
+  end
+
+  def victory_msg
+    puts 'Congratulations! You broke the code!'
+  end
+
+  def failure_msg
+    puts 'Aw, maybe next time'
+  end
+
 end
