@@ -40,7 +40,7 @@ class Game
       length_valid = input.length == 4
       content_valid = input.all? { |digit| digit.between?(1, 6) }
       guess_valid = length_valid && content_valid
-      puts 'invalid input' if !guess_valid
+      puts 'invalid input' unless guess_valid
     end
     input
   end
