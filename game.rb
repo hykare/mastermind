@@ -60,3 +60,37 @@ class Game
   end
 
 end
+
+class GameAsCodeMaker < Game
+  # copy-pasted from make_code
+  def get_guess
+    Array.new(4).map { rand(1..6) }
+  end
+
+  def prompt_msg
+    puts 'next round (enter)'
+  end
+
+  def victory_msg
+    puts 'The computer has broken the code!'
+  end
+
+  def failure_msg
+    puts 'The computer has run out of guesses'
+  end
+
+  # copy-pasted from get_guess
+  def make_code
+    puts 'What is the secret code?'
+    code_valid = false
+    input = []
+    until code_valid
+      input = gets.chomp.chars.map { |char| char.to_i }
+      length_valid = input.length == 4
+      content_valid = input.all? { |digit| digit.between?(1, 6) }
+      code_valid = length_valid && content_valid
+      puts 'invalid input' unless code_valid
+    end
+    input
+  end
+end
