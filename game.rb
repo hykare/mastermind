@@ -64,6 +64,7 @@ end
 class GameAsCodeMaker < Game
   # copy-pasted from make_code
   def get_guess
+    gets # stops play loop from going to the next round immediately
     Array.new(4).map { rand(1..6) }
   end
 
