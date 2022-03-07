@@ -31,14 +31,18 @@ class Game
   end
 
   def get_guess
-    guess_valid = false
+    input_code
+  end
+
+  def input_code
+    code_valid = false
     input = []
-    until guess_valid
+    until code_valid
       input = gets.chomp.chars.map { |char| char.to_i }
       length_valid = input.length == 4
       content_valid = input.all? { |digit| digit.between?(1, 6) }
-      guess_valid = length_valid && content_valid
-      puts 'invalid input' unless guess_valid
+      code_valid = length_valid && content_valid
+      puts 'invalid input' unless code_valid
     end
     input
   end
@@ -83,15 +87,6 @@ class GameAsCodeMaker < Game
   # copy-pasted from get_guess
   def make_code
     puts 'What is the secret code?'
-    code_valid = false
-    input = []
-    until code_valid
-      input = gets.chomp.chars.map { |char| char.to_i }
-      length_valid = input.length == 4
-      content_valid = input.all? { |digit| digit.between?(1, 6) }
-      code_valid = length_valid && content_valid
-      puts 'invalid input' unless code_valid
-    end
-    input
+    input_code
   end
 end
