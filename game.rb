@@ -2,23 +2,24 @@ require 'board'
 
 class Game
   TOTAL_ROUNDS = 12
-  attr_reader :board, :round, :code
+  attr_reader :board, :round, :secret_code
 
   def initialize
     @board = Board.new
     @round = 0
-    @code = make_code
+    @secret_code = make_code
   end
 
   def play
-    print 'pssst! the secret code is ', code, "\n\n"
+    print 'pssst! the secret code is ', secret_code, "\n\n"
     while round < TOTAL_ROUNDS
       puts "round #{round + 1}"
       board.draw(round)
       prompt_msg
       guess = get_guess
-      board.update(guess, round, code)
-      break if guess == code
+      key = make_key(guess)
+      board.update(guess, key, round)
+      break if guess == secret_code
 
       @round += 1
     end
@@ -45,6 +46,29 @@ class Game
       puts 'invalid input' unless code_valid
     end
     input
+  end
+
+  def make_key(guess)
+    local_code = secret_code.clone # prevents deleting from original
+    correct_no = 0
+    value_correct_no = 0
+    key = []
+    # checks for exact matches in both value and position
+    guess.each_with_index do |peg, i|
+      next unless peg == local_code[i]
+
+      correct_no += 1
+    end
+    # checks for matches in value regardless of position
+    guess.each do |peg|
+      next unless local_code.include? peg
+
+      local_code.delete_at(local_code.index(peg))
+      value_correct_no += 1
+    end
+    correct_no.times { key << '●' }
+    (value_correct_no - correct_no).times { key << '○' }
+    key
   end
 
   def prompt_msg
