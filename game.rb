@@ -91,7 +91,11 @@ end
 class GameAsCodeMaker < Game
   def get_guess
     gets # stops play loop from going to the next round immediately
-    Array.new(4).map { rand(1..6) }
+    values_left = [1, 2, 3, 4, 5, 6]
+    board.keys.each_with_index do |key, i|
+      values_left -= board.guesses[i] if key.empty?
+    end
+    Array.new(4).map { values_left.sample }
   end
 
   def prompt_msg
