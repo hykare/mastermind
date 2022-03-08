@@ -86,11 +86,9 @@ class Game
   def make_code
     Array.new(4).map { rand(1..6) }
   end
-
 end
 
 class GameAsCodeMaker < Game
-  # copy-pasted from make_code
   def get_guess
     gets # stops play loop from going to the next round immediately
     Array.new(4).map { rand(1..6) }
@@ -108,7 +106,6 @@ class GameAsCodeMaker < Game
     puts 'The computer has run out of guesses'
   end
 
-  # copy-pasted from get_guess
   def make_code
     puts 'What is the secret code?'
     input_code
